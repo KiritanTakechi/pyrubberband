@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
+import importlib.util
 
-import imp
-
-version = imp.load_source('pyrubberband.version', 'pyrubberband/version.py')
+spec = importlib.util.spec_from_file_location('pyrubberband.version', 'pyrubberband/version.py')
+version = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(version)
 
 setup(
     name='pyrubberband',
